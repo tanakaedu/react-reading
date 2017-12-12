@@ -1,18 +1,15 @@
 # Reactとは
 Facebookが開発しているWebのユーザーインターフェースを開発するためのJavaScriptライブラリです。
 
-詳しくはこちらなど -> [https://app.codegrid.net/entry/react-1:title]
+詳しくはこちらなど -> https://app.codegrid.net/entry/react-1
 
 双方向バインディングという、データが変更されたら自動的に内容が変更されるような使いやすいUIを簡単に開発できるライブラリの一つです。データを一方向にして設計をシンプルにすることや、React NativeというWebページをアプリ化するためのライブラリなどもあり、Webサービスのフロントエンド開発で様々なところで採用されています。
 
-気になる評価もあります -> [https://www.infoq.com/jp/articles/no-more-mvc-frameworks:title]
+気になる評価もあります -> https://www.infoq.com/jp/articles/no-more-mvc-frameworks
 
-アプリケーションの設計手法のMVCがすでに古い、とあちこちで議論されていますが、基本的な考え方は知っておいて損はありません。それとReactの関係など -> [http://postd.cc/is-mvc-dead-for-the-frontend/:title]
+アプリケーションの設計手法のMVCがすでに古い、とあちこちで議論されていますが、基本的な考え方は知っておいて損はありません。それとReactの関係など -> http://postd.cc/is-mvc-dead-for-the-frontend/
 
-ゲーム開発でも、状態の変化と出力をどのように連携させるかは重要なテーマです。Reactはデータを変更するとすぐに結果が変わるなどの面白い動きを見れるので体験しておきましょう。まずは公式のトップページ( [https://reactjs.org/:title] )を見ていきます。
-
-# 目次
-[:contents]
+ゲーム開発でも、状態の変化と出力をどのように連携させるかは重要なテーマです。Reactはデータを変更するとすぐに結果が変わるなどの面白い動きを見れるので体験しておきましょう。まずは公式のトップページ( https://reactjs.org/ )を見ていきます。
 
 # シンプルなコンポーネント(A Simple Component)
 Reactコンポーネントは表示する内容を返す`render()`メソッドを実装します。以下の例は<b>JSX</b>というXMLに似た構文を利用しています。ReactDOM.render()で渡したデータは、Reactコンポーネントでは`this.props`でアクセスできます。
@@ -93,7 +90,9 @@ ReactDOM.render(<Timer />, mountNode);
 JSXはReactを使うのに必須ではなく、同様のことをJavaScriptで書くことができます。サンプルのJSXのチェックを外すか、[https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA:title]で、JSXをJavaScriptに変換した例を確認できます。
 
 
-
-
-
+# 参考URL
+- [React公式ページ](https://reactjs.org/)
+- [CodeGrid. 第1回 React.jsとは](https://app.codegrid.net/entry/react-1)
+- [作者 Jean-Jacques Dubray , 翻訳者 徳武 聡. 私がMVCフレームワークをもはや使わない理由](https://www.infoq.com/jp/articles/no-more-mvc-frameworks)
+- [Alex Moldovan. フロントエンドにおいてModel-View-Controllerは死んだのか？]()
 

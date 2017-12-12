@@ -127,7 +127,13 @@ class TodoApp extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+```
 
+TodoAppというReactコンポーネントを定義して、コンストラクターで `items` と `text` の2つの状態を宣言しています。
+
+`handleChange` と `handleSubmit` への代入は、コンストラクターのインスタンスをそれぞれメソッドの`this`に割り当てるものです。JavaScriptはインスタンスの扱いに癖があり、それに関するものです。
+
+```javascript
   render() {
     return (
       <div>
@@ -145,11 +151,27 @@ class TodoApp extends React.Component {
       </div>
     );
   }
+```
 
+ページを描画するための`render()`関数です。以下、重要な部分です。
+
+- ToDoListというもう一つのReactコンポーネントに`items`状態を渡しています
+- フォームでAddボタンを押した時に`handleSubmit`メソッドを呼び出すように設定しています
+- テキストボックスが変更されたとき( `onChange` )に、`handleChange`メソッドを呼び出すように設定しています
+- テキストボックスに表示する値は、`text`の状態です
+- ボタンには`items`の配列数を「Add #」の後ろに表示します
+
+以上、コードと見比べてみてください。
+
+```javascript
   handleChange(e) {
     this.setState({ text: e.target.value });
   }
+```
 
+テキストボックスが変更された時に実行するメソッド。変更点が`e`に渡されて、`e.target.value`で中身を確認できるので、`text`の状態を現在のテキストボックスの中身にします。状態がこれで変わるので、自動的にrender()が再描画されてテキストボックスの表示と状態が一致することになります。Reactで重要な動作の一つです。
+
+```javascript
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.text.length) {
@@ -165,7 +187,16 @@ class TodoApp extends React.Component {
     }));
   }
 }
+```
 
+Addボタンが押された時の処理です。以下のような処理をしています。
+
+- ボタンが押された時のデフォルトの動作をキャンセルします(`e.preventDefault()`)
+- テキストボックスが空だった(長さが0)ら何もしない
+- `newItem`に新しく追加するデータをオブジェクトにして代入。重複しないように、表示はしていないが`id`に現在時間を設定しています
+- 先の例と同様に、無名関数で新しい`items`の状態と`text`を空欄にするためのオブジェクトを返しています
+
+```javascript
 class TodoList extends React.Component {
   render() {
     return (
@@ -177,19 +208,43 @@ class TodoList extends React.Component {
     );
   }
 }
+```
 
+2つ目のReactコンポーネントです。`this.props.items`とすれば、TodoAppコンポーネントが渡してくる`items`を参照できます。
+
+`map`はfor文に代わる機能で、`配列.map( 関数(データ) )`とすると、配列の要素をデータに渡しながら、関数を配列の数だけ呼び出してくれるものです。これにより、`items`の全ての要素について、`key`属性に`items.id`を指定して、`item.text`を表示することになります。
+
+```javascript
 ReactDOM.render(<TodoApp />, mountNode);
 ```
 
+`mountNode`要素にTodoAppコンポーネントを出力するように最後に指定しています。
+
+# コンポーネントで外部プラグインを利用する(A Component Using External Plugins)
+Reactを他のライブラリーやフレームワークと組み合わせる例です。[remarkable](https://github.com/jonschlinkert/remarkable)というライブラリを使って、テキストエリアの内容をリアルタイムに装飾します。
+
+ポイントは`getRawMarkup()`メソッドです。この中でRemarkable()のインスタンスを生成して、現在の状態の`value`をレンダリングして、`__html`属性として返しています。
+
+これを、`render()`内の`dangerouslySetInnerHTML`に渡しています。この属性はReactが定義しているもので、代入された文字列をそのままブラウザーに出力するものです。この処理は、タグを解釈することからセキュリティー的に危険な行為なため、`dangerously`という名前になっています。
+
+`defaultValue`属性を指定すると、その要素の初期値を設定できます。
+
+それ以外は、ここまで登場したものですので、意味を読み取ってみてください。
+
+# まとめ
+Reactの例をいくつか見て、お約束などを確認しました。様々な処理が暗黙に行われるため、ルールを把握していないと理解するのが難しいのですが、設計は楽になりますし、実装するコード数も減ります。
+
+ReactやPhaserといったWeb系の技術の強いところは、Webページ上で直接動かせる点にあります。Unityのように開発ツールをインストールしなくても、テキストエディターとWebブラウザーにインターネットがあれば動かすことができますし、GitHub Pagesで作ったものを動かすことができます。PC、スマホのどちらでも動きます。処理速度はどんどん高速化し、WebGLを使えばシェーダーも使えるので表現力も進化しています。
+
+ReactはテキストエディターとWebブラウザーとインターネットがあれば動きますが、より楽に開発をして、コードを小さくするなどのツールやテスト環境をまとめたパッケージがあります。次は、 https://reactjs.org/tutorial/tutorial.html をもとに、Reactの開発環境を整えて、実際にアプリを作ってみましょう。
 
 # 補足
 ## JSXについて
 JSXはReactを使うのに必須ではなく、同様のことをJavaScriptで書くことができます。サンプルのJSXのチェックを外すか、[https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA:title]で、JSXをJavaScriptに変換した例を確認できます。
-
 
 # 参考URL
 - [React公式ページ](https://reactjs.org/)
 - [CodeGrid. 第1回 React.jsとは](https://app.codegrid.net/entry/react-1)
 - [作者 Jean-Jacques Dubray , 翻訳者 徳武 聡. 私がMVCフレームワークをもはや使わない理由](https://www.infoq.com/jp/articles/no-more-mvc-frameworks)
 - [Alex Moldovan. フロントエンドにおいてModel-View-Controllerは死んだのか？]()
-
+- [jonschlinkert. remarkable](https://github.com/jonschlinkert/remarkable)

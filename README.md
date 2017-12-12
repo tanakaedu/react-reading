@@ -1,3 +1,5 @@
+# React 最初の一歩
+
 # Reactとは
 Facebookが開発しているWebのユーザーインターフェースを開発するためのJavaScriptライブラリです。
 
@@ -240,7 +242,7 @@ ReactはテキストエディターとWebブラウザーとインターネット
 
 # 補足
 ## JSXについて
-JSXはReactを使うのに必須ではなく、同様のことをJavaScriptで書くことができます。サンプルのJSXのチェックを外すか、[https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA:title]で、JSXをJavaScriptに変換した例を確認できます。
+JSXはReactを使うのに必須ではなく、同様のことをJavaScriptで書くことができます。サンプルのJSXのチェックを外すか、[Babel REPL](https://babeljs.io/repl/#?presets=react&code_lz=MYewdgzgLgBApgGzgWzmWBeGAeAFgRgD4AJRBEAGhgHcQAnBAEwEJsB6AwgbgChRJY_KAEMAlmDh0YWRiGABXVOgB0AczhQAokiVQAQgE8AkowAUPGDADkdECChWeASl4AlOMOBQAIgHkAssp0aIySpogoaFBUQmISdC48QA)で、JSXをJavaScriptに変換した例を確認できます。
 
 # 参考URL
 - [React公式ページ](https://reactjs.org/)
